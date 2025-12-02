@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile      
+    container_name: serveur_taches
+    ports:
+      - "5000:5000"               
+    networks:
+      - reseau_taches
+
+  
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: client_taches
+    networks:
+      - reseau_taches
+    depends_on:
+      - server
+    stdin_open: true              
+    tty: true
+    command: ["python", "client.py"]  
+
+networks:
+  reseau_taches:
+    driver: bridge
