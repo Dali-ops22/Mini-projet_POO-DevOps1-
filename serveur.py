@@ -2,13 +2,13 @@
 import socket
 import threading
 import json
-from gestionnaire_taches import GestionnaireTaches # type: ignore
+
 
 class ServeurTaches:
     def __init__(self, host="127.0.0.1", port=5000):
         self.host = host
         self.port = port
-        self.gestionnaire = GestionnaireTaches()
+        
 
         # Création du socket serveur
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
